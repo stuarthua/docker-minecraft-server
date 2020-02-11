@@ -10,6 +10,11 @@ else
 	echo "eula=true" > "${EULA_FILE}"
 fi
 
+PAPER_RELEASE="1.15.2-b99"
+if [ ! -f "/data/paper.jar"]; then
+	curl -o /data/paper.jar -L "https://yivesmirror.com/files/paper/Paper-${PAPER_RELEASE}.jar"
+fi
+
 # permissions
 chown -R abc:abc \
 	/data \
