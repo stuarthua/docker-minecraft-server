@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv bash
+
+# agree EULA
+EULA_FILE="/data/eula.txt"
+if [ -f "${EULA_FILE}" ]; then
+    if grep -q "eula=false" "${EULA_FILE}"; then
+        sed -i -e s/"eula=false"/"eula=true"/ "${EULA_FILE}"
+    fi
+else
+	echo "eula=true" > "${EULA_FILE}"
+fi
+
+# permissions
+chown -R abc:abc \
+	/data \
+	/data/*

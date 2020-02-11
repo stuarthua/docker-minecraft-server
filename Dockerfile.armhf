@@ -1,0 +1,28 @@
+FROM lsiobase/ubuntu:arm32v7-bionic
+
+# set label
+LABEL maintainer="stuarthua"
+
+# package versions
+ARG PAPER_RELEASE="1.15.2-b99"
+
+RUN \
+ echo "**** install packages ****" && \
+ apt-get update && \
+ apt-get install -y \
+	--no-install-recommends \
+    curl \
+	openjdk-8-jre-headless && \
+ echo "**** fetch paper.jar ****" && \
+ mkdir -p\
+	/data && \
+ curl -o \
+ /data/paper.jar -L \
+	"https://yivesmirror.com/files/paper/Paper-${PAPER_RELEASE}.jar"
+
+# copy local files
+COPY root/ /
+
+# ports and volumes
+EXPOSE 25565
+VOLUME /data
