@@ -4,6 +4,6 @@ cd /data || exit
 
 exec \
 	s6-setuidgid abc java \
-    -Xms6G \
-    -Xmx6G \
+    -Xms2G \
+    -Xmx2G \
 	-jar /data/paper.jar nogui
